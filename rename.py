@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-import fnmatch  # Import fnmatch module for file pattern matching
-import re  # Import re module for regular expressions
+import fnmatch # Import fnmatch module for file pattern matching
+import re # Import re module for regular expressions
 
 def sanitize_file_name(name):
     # Remove invalid characters from the file name
@@ -9,10 +9,8 @@ def sanitize_file_name(name):
     return sanitized_name
 
 def get_unique_file_name(file_name, output_folder):
-    # Check if the file already exists in the output folder
-    if os.path.exists(os.path.join(output_folder, file_name)):
-        # If the file exists, add a numerical suffix to make it unique
-        base_name, extension = os.path.splitext(file_name)
+    if os.path.exists(os.path.join(output_folder, file_name)):  # Check if the file already exists in the output folder
+        base_name, extension = os.path.splitext(file_name)  # If the file exists, add a numerical suffix to make it unique
         suffix = 1
         new_file_name = f"{base_name}_{suffix}{extension}"
         while os.path.exists(os.path.join(output_folder, new_file_name)):
@@ -51,23 +49,11 @@ def rename_pdf_files(folder_path, excel_path, output_folder, start_index):
         else:
             print(f"No matching file found for row {index + 1} in the specified folder.")
 
+#! Update the file path before running the script
 if __name__ == "__main__":
-    folder_path = "/Users/livnelson/Downloads/NEI_DOCS/SeperatedDocs"  # Specify the folder containing the PDF files
-    excel_path = "/Users/livnelson/Downloads/Combined_Leads_Owner_Opperated_FOR-RENAME.xlsx"  # Specify the path to Excel spreadsheet
-    output_folder = "/Users/livnelson/Downloads/NEI_DOCS/Renamed"  # Specify the output folder for renamed files
+    folder_path = "[insert-path-here]"  # Specify the folder containing the PDF files
+    excel_path = "[insert-path-here]"  # Specify the path to Excel spreadsheet
+    output_folder = "[insert-path-here]"  # Specify the output folder for renamed files
     start_index = 1  # Specify the index to start from
 
     rename_pdf_files(folder_path, excel_path, output_folder, start_index)
-
-
-
-
-
-# !Path to Excel file for renaming
-# /Users/livnelson/Downloads/Combined_Leads_Owner_Opperated_FOR-RENAME.xlsx
-
-# !Path to outfut folder with renamed files
-# /Users/livnelson/Downloads/NEI_DOCS/Renamed
-
-# !Path to folder with PDFs to be renamed
-# /Users/livnelson/Downloads/NEI_DOCS/SeperatedDocs
